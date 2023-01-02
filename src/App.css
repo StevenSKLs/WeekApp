@@ -1,0 +1,51 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  max-width: 1284px;
+  padding: 0 25vw;
+  text-align: center;
+  margin-top: 7%;
+  /* position: relative; 
+  width: 100vw;
+  height: 100vh;
+  position: relative; */
+}
+.loader{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  top:0;
+  left: 0;
+  right: 0;
+}
+
+
+.App{
+  padding: 3% 0;
+  background: linear-gradient(275deg, #181515, #ffffff00);
+  box-shadow: inset 17px -6em 3em rgb(0 0 0 / 10%), 1em 1em 1em rgb(110 118 111 / 30%);
+}
+/* .mundo{
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+}  */
+
+
+
+.Box1{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.minBox1{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: center;
+}
