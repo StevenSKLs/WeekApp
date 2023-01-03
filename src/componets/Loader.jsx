@@ -6,8 +6,14 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 const Loader = () => {
     return (
         <div className='loader'>
-            <Spinner />
-           <img src={`${cat[4]}`} alt="" /> 
+            
+            <div className='loaderImg'>
+                <img src={`${cat[4]}`} alt="" /> 
+            </div>
+            <div>
+                <p style={{fontSize:"2rem"}}>Loading</p><Spinner />
+            </div>
+           
         </div>
     );
 };

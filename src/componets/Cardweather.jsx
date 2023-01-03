@@ -6,6 +6,7 @@ import Loader from './Loader'
 function Cardweather() {
     const [weather, setWeather] = useState({})
     const [loader, setLoader] = useState(false)
+    const [temperature, setTemperature] = useState(true)
 setTimeout(() => {
   setLoader(false)
 }, 3000);
@@ -21,44 +22,60 @@ setTimeout(() => {
   navigator.geolocation.getCurrentPosition(success, error);
   
 },[])
-let deg = weather.wind?.deg
 
-let ambient = deg <59 ? imgs[0] : deg <86 ? imgs[1] : deg <300 ? imgs[2]:imgs[3];
+const tempK = weather.main?.temp
+const tempF = (tempK - 273.15)* 9/5 + 32
+const tempC = tempK - 273.15
+const degF = tempF.toFixed(2)
+const degC = tempC.toFixed(2)
 
+const pressureP = weather.main?.pressure
+const pressuremb = pressureP/100
+
+const changeUnits = ()=>{
+  setTemperature(!temperature)
+}
+
+const ambient = degF <59 ? imgs[0] : degF <86 ? imgs[1] : degF <300 ? imgs[2]:imgs[3];
 document.body.style.background = `url(${ambient}) 0% 0% / 100% 100% no-repeat fixed`
 
-
-console.log(weather)
-
 const icon = weather.weather?.[0].icon
-const urlIcon = icon ? <img src={`https://openweathermap.org/img/wn/${icon}@2x.png`} alt="" /> : "loading"
+const urlIcon = icon ? <img src={`https://openweathermap.org/img/wn/${icon}@2x.png`} alt="" /> : <h2>No Data</h2>
+const nameContry = icon ? <h2>{weather.name}{', '}{weather.sys?.country}</h2> : <h2>No Data  <i className="fa-solid fa-spinner rotate"></i></h2>
+
 
   return (
     <div className="App">
     {loader && <Loader />}
       <h1>Wheather App</h1>
-      <h2>{weather.name},{' '}{weather.sys?.country}</h2>
+      {nameContry}
       <div className='Box1'>
-        <div>
+        <div className='minBox0' style={{fontSize:" 20px"}}>
         {urlIcon}
+        <p className='texts'>{temperature ? degF:degC}{' '}{temperature ? '°F':'°C'}
+        </p>
+        
       </div>
         <div>
           <h2>{'"'}{weather.weather?.[0].description}{'"'}</h2>
           <div className='minBox1'>
-          <i className="fa-solid fa-wind"></i>
-          <p>Wind seed {weather.wind?.speed}</p>
+          
+          <p><i className="fa-solid fa-wind"></i>  Wind speed </p>
+          <p className='texts'>{weather.wind?.speed} m/s</p>
           </div>
 
           <div className='minBox1'>
             {urlIcon}
-          <p>hola</p>
           </div>
+          <p className='texts'>Clouds {weather.clouds?.all} %</p>
 
           <div className='minBox1'>
-            <p>Pressure {deg}</p>
+            <p><i className="fa-solid fa-temperature-three-quarters"></i> Pressure</p>
+           <p className='texts'>{pressuremb} mb</p>
           </div>
         </div>
       </div>
+      <button className='button' onClick={changeUnits}>Changue Units °F/°C</button>
     </div>
   )
 }

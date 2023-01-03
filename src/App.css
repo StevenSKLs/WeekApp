@@ -5,7 +5,6 @@
 }
 
 #root {
-  max-width: 1284px;
   padding: 0 25vw;
   text-align: center;
   margin-top: 7%;
@@ -22,21 +21,15 @@
   top:0;
   left: 0;
   right: 0;
+  z-index: 3;
 }
-
 
 .App{
   padding: 3% 0;
   background: linear-gradient(275deg, #181515, #ffffff00);
   box-shadow: inset 17px -6em 3em rgb(0 0 0 / 10%), 1em 1em 1em rgb(110 118 111 / 30%);
+  color: aliceblue;
 }
-/* .mundo{
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  background-attachment: fixed;
-}  */
-
-
 
 .Box1{
   display: grid;
@@ -45,7 +38,48 @@
 
 .minBox1{
   display: flex;
-  align-items: center;
   gap: 15px;
   justify-content: center;
 }
+
+.minBox1 img{
+  filter: drop-shadow(2px 2px 10px black) invert(1);
+  width: 14%;
+  height: 100%;
+}
+
+.minBox0 img{
+  filter: drop-shadow(2px 4px 30px rgba(255, 255, 255, 0.322));
+  width: 54%;
+  height: 77%;
+}
+
+.rotate {
+  animation: rotation 2s infinite linear;
+}
+
+.texts{
+  color: #fbfbfb;
+  font-weight: 790;
+  filter: drop-shadow(2px 2px 6px white);
+}
+
+.button{
+  filter: drop-shadow(2px 4px 6px black);
+}
+
+.loaderImg{
+  display: flex;
+  justify-content: center;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+
